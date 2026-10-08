@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agentic SDLC Orchestrator</title>
+    <!-- Applies the remembered theme before the first paint. Without this the page renders light
+         and then flips, which is the flash every dark mode is judged by. Kept inline and tiny on
+         purpose; ThemeProvider owns the theme from here on, and agrees on this key and default. -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('orchestrator.theme');
+          var theme = stored === 'dark' || stored === 'light' ? stored : 'light';
+          document.documentElement.setAttribute('data-theme', theme);
+          document.documentElement.style.colorScheme = theme;
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

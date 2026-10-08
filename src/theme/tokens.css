@@ -1,0 +1,223 @@
+/* --- Theme tokens ------------------------------------------------------------------------------
+   The single place any colour is decided. Every rule in index.css refers to one of these names,
+   so a theme is a set of values rather than a second stylesheet: nothing below changes layout,
+   spacing or typography, and the light values are exactly the literals the application shipped
+   with, so light mode is pixel-identical to what it was before dark mode existed.
+
+   `[data-theme='dark']` on <html> is the only switch. It is set by ThemeProvider before React
+   paints, so a reload never flashes the wrong theme. */
+
+:root,
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Backgrounds and surfaces */
+  --bg-page: #f6f7fb;
+  --surface: #ffffff;
+  --surface-subtle: #fcfcfd;
+  --surface-muted: #f2f4f7;
+
+  /* Lines */
+  --border: #eaecf0;
+  --border-strong: #d0d5dd;
+
+  /* Text */
+  --text: #101828;
+  --text-secondary: #344054;
+  --text-muted: #667085;
+  --text-subtle: #98a2b3;
+  --text-faint: #c7cddb;
+  /* On a saturated/branded fill, where the fill is the same in both themes. */
+  --on-solid: #ffffff;
+
+  /* Primary (indigo) */
+  --primary: #4f46e5;
+  --primary-soft: #6366f1;
+  --primary-hover: #4338ca;
+  /* Indigo that carries white text. Separate from --primary because a fill must stay
+     saturated in dark mode: lightening it the way accent *text* needs leaves white on lilac. */
+  --primary-fill: #4f46e5;
+  --primary-fill-hover: #4338ca;
+  --primary-strong: #3538cd;
+  --primary-deep: #3730a3;
+  --primary-100: #c7d2fe;
+  --primary-bg: #e0e7ff;
+  --primary-bg-soft: #eef2ff;
+  --focus-ring: #a5b4fc;
+
+  /* Status. Hue is preserved across themes — green stays green, red stays red — and only
+     lightness moves, so a status is recognisable at a glance in either theme. */
+  --success-fg: #067647;
+  --success-solid: #12b76a;
+  --success-bg: #d1fadf;
+  --warning-fg: #b45309;
+  --warning-fg-strong: #92400e;
+  --warning-solid: #f79009;
+  --warning-bg: #fef3c7;
+  --warning-bg-soft: #fffbeb;
+  --warning-border: #fde68a;
+  --danger-fg: #b42318;
+  --danger-solid: #d92d20;
+  --danger-bg: #fee4e2;
+  --danger-bg-soft: #fffbfa;
+  --danger-border: #fecdca;
+  --info-fg: #026aa2;
+  --info-fg-strong: #1d4ed8;
+  --info-bg: #e0f2fe;
+  --info-bg-soft: #eff6ff;
+  --accent-fg: #6941c6;
+  --accent-bg: #f4ebff;
+
+  /* Sidebar — dark in both themes, so it barely moves. */
+  --sidebar-bg: #111827;
+  --sidebar-text: #aeb9cf;
+  --sidebar-accent: #818cf8;
+  --brand-ink: #312e81;
+  --brand-mark-from: #c7d2fe;
+  --brand-mark-to: #a5b4fc;
+
+  /* Overview hero — a pale branded surface carrying dark text, and the illustration drawn on it.
+     Separate from the dark `--hero-*` marketing gradient, which other surfaces still use. */
+  --hero-surface-from: #eceefc;
+  --hero-surface-to: #f6f4fe;
+  --hero-surface-border: #e2e3fa;
+  --hero-surface-glow: #ddd9fb;
+  --hero-text: #101828;
+  --hero-text-muted: #4a4f63;
+  --hero-art-surface: #ffffff;
+  --hero-art-surface-alt: #f3f4fe;
+  --hero-art-line: #dcdef7;
+  --hero-art-accent: #6366f1;
+  --hero-art-accent-soft: #c3c7f9;
+
+  /* Marketing surfaces */
+  --hero-from: #1e1b4b;
+  --hero-to: #312e81;
+  --hero-glow: #6366f1;
+  --login-glow: #e0e7ff;
+  /* Sign-in: only the form panel follows the theme; the brand stage is dark in both. */
+  --login-panel-bg: #f4f5fb;
+  --login-card-bg: #ffffff;
+  --login-card-border: rgba(16, 24, 40, 0.06);
+
+  /* Code block — dark on light, darker still on dark. */
+  --code-bg: #1f2937;
+  --code-fg: #e5e7eb;
+
+  /* Third-party marks keep their own colour in both themes: a recoloured Azure or Git logo
+     stops reading as that logo. */
+  --brand-azure: #0078d4;
+  --brand-azure-soft: #2b88d8;
+  --brand-git: #f05032;
+  --brand-violet: #7c3aed;
+
+  /* Elevation */
+  /* The topbar floats over scrolling content, so it is translucent rather than opaque. */
+  --topbar-bg: rgba(255, 255, 255, 0.88);
+
+  --overlay: rgba(16, 24, 40, 0.45);
+  --shadow-xs: 0 1px 2px rgba(16, 24, 40, 0.04);
+  --shadow-sm: 0 1px 2px rgba(16, 24, 40, 0.12);
+  --shadow-card: 0 3px 18px rgba(26, 34, 58, 0.05);
+  --shadow-xl: 0 22px 60px rgba(37, 43, 76, 0.12);
+  --shadow-modal: 0 24px 60px rgba(16, 24, 40, 0.24);
+  --shadow-drawer: -8px 0 28px rgba(16, 24, 40, 0.18);
+  --shadow-primary: 0 12px 25px rgba(79, 70, 229, 0.25);
+  --shadow-primary-sm: 0 6px 16px rgba(79, 70, 229, 0.22);
+  --ring: 0 0 0 2px rgba(79, 70, 229, 0.18);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg-page: #0f1115;
+  --surface: #171a21;
+  --surface-subtle: #1c2029;
+  --surface-muted: #232833;
+
+  --border: #2a2f3a;
+  --border-strong: #3a4150;
+
+  --text: #e8eaf0;
+  --text-secondary: #c3c9d5;
+  --text-muted: #97a0b0;
+  --text-subtle: #7d8698;
+  --text-faint: #636c7c;
+  --on-solid: #ffffff;
+
+  /* Indigo lightens: #4f46e5 on a near-black surface fails contrast and reads as a hole. */
+  --primary: #8b93f8;
+  --primary-soft: #a0a6fa;
+  --primary-hover: #a5b4fc;
+  --primary-fill: #4f46e5;
+  --primary-fill-hover: #6058ea;
+  --primary-strong: #aab0fb;
+  --primary-deep: #4338ca;
+  --primary-100: #b9c0fb;
+  --primary-bg: #262b4a;
+  --primary-bg-soft: #1f2438;
+  --focus-ring: #8b93f8;
+
+  --success-fg: #5ddb9a;
+  --success-solid: #22c37a;
+  --success-bg: #12301f;
+  --warning-fg: #f0b429;
+  --warning-fg-strong: #f7c65a;
+  --warning-solid: #f79009;
+  --warning-bg: #33260c;
+  --warning-bg-soft: #2a2009;
+  --warning-border: #5a4413;
+  --danger-fg: #f98a80;
+  --danger-solid: #e5483b;
+  --danger-bg: #3a1a17;
+  --danger-bg-soft: #2d1512;
+  --danger-border: #5d2823;
+  --info-fg: #5cb8e8;
+  --info-fg-strong: #7aa7f5;
+  --info-bg: #10293a;
+  --info-bg-soft: #13202f;
+  --accent-fg: #b89bf0;
+  --accent-bg: #2a2140;
+
+  --sidebar-bg: #0c0f16;
+  --sidebar-text: #9aa5bb;
+
+  --hero-surface-from: #1b1838;
+  --hero-surface-to: #221e48;
+  --hero-surface-border: #322c63;
+  --hero-surface-glow: #3a3179;
+  --hero-text: #f2f4f7;
+  --hero-text-muted: #b6bbd0;
+  --hero-art-surface: #262249;
+  --hero-art-surface-alt: #2e295b;
+  --hero-art-line: #3d3874;
+  --hero-art-accent: #8b93f8;
+  --hero-art-accent-soft: #4f4aa6;
+
+  --hero-from: #15132e;
+  --hero-to: #241f5c;
+  --hero-glow: #4f46e5;
+  --login-glow: #1e2340;
+  --login-panel-bg: #10131a;
+  --login-card-bg: #171a21;
+  --login-card-border: rgba(255, 255, 255, 0.08);
+
+  --code-bg: #0c0f14;
+  --code-fg: #d5d9e0;
+
+  --brand-violet: #8b5cf6;
+
+  /* Shadows carry no light on a dark page; depth comes from a blacker, tighter shadow. */
+  --topbar-bg: rgba(23, 26, 33, 0.88);
+
+  --overlay: rgba(0, 0, 0, 0.62);
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 3px 18px rgba(0, 0, 0, 0.42);
+  --shadow-xl: 0 22px 60px rgba(0, 0, 0, 0.55);
+  --shadow-modal: 0 24px 60px rgba(0, 0, 0, 0.62);
+  --shadow-drawer: -8px 0 28px rgba(0, 0, 0, 0.55);
+  --shadow-primary: 0 12px 25px rgba(79, 70, 229, 0.42);
+  --shadow-primary-sm: 0 6px 16px rgba(79, 70, 229, 0.38);
+  --ring: 0 0 0 2px rgba(139, 147, 248, 0.32);
+}
